@@ -1,0 +1,26 @@
+p {
+border: 3px solid green;
+margin: 4px;
+text-align: center;
+}
+
+.Bob {
+    color: red;
+}
+
+.Writer {
+    color: green;
+}
+/* Example CSS for styling li elements */
+li {
+    /* Add your styles here */
+    list-style-type: circle; /* Remove bullets */
+    margin-bottom: 10px; /* Add some spacing between list items */
+    border: 2px solid blue;
+    padding: 3px;
+    width: 200px;
+    color: black;
+    background-color: lightblue;
+}
+#newFreeLancer > li {
+  }
