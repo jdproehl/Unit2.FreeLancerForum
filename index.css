@@ -1,7 +1,11 @@
 p {
 border: 3px solid green;
 margin: 4px;
+margin-right: 500px;
+margin-left: 500px;
 text-align: center;
+background-color: green;
+color: white;
 }
 
 .Bob {
@@ -9,7 +13,7 @@ text-align: center;
 }
 
 .Writer {
-    color: green;
+    color: red;
 }
 /* Example CSS for styling li elements */
 li {
@@ -22,5 +26,3 @@ li {
     color: black;
     background-color: lightblue;
 }
-#newFreeLancer > li {
-  }

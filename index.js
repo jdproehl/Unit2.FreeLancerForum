@@ -7,10 +7,12 @@ A few seconds later, a new listing appears for a freelancer named Carol, who is 
 
 New freelancers continue to appear every few seconds, and the average starting price is updated accordingly.
 */
-const names = ["Alice", "Bob"];
-const occupations = ["Writer", "Teacher"];
-const prices = [30, 50];
-const maxFreeLancers = 6;
+
+// Define various arrays for 'Names', 'Occupations', and 'Prices'
+const names = ["Brian", "Paris", "Jared", "Colin", "Annie", "Jackie", "Zach", "Lisa", "David", "Allison", "Larry", "Andrea", "Brandon", "Crytstal", "Alicia"];
+const occupations = ["Writer", "Teacher", "Painter", "Basketball Trainer", "Pilot", "Surgeon", "Dancer", "Rocket Scientist", "Florist", "Professional Bull Fighter"];
+const prices = [30, 50, 70, 90, 110, 120, 140];
+const maxFreeLancers = 10;
 const freeLancers = [
     { name: "Alice",
       occupation: "Writer", 
@@ -20,23 +22,8 @@ const freeLancers = [
      occupation: "Teacher", 
      price: 50,
     },
-    { name: "Susan",
-    occupation: "Developer", 
-    price: 50,
-    },
-    { name: "Paris",
-    occupation: "Developer", 
-    price: 50000000,
-    },
-    { name: "Brian",
-    occupation: "Developer", 
-    price: 50000000,
-    },
-    { name: "Jaron",
-    occupation: "Clown", 
-    price: 20000000000,
-    },
 ];
+// create a new free lancer who will be added later.
 const newFreeLancer = [
     { name: "Carol",
       occupation: "Programmer",
@@ -45,7 +32,7 @@ const newFreeLancer = [
 ];
 document.addEventListener("DOMContentLoaded", function() {
     render(); // this function is used to render the intial state.
-const addFreeLancerIntervalId = setInterval(addFreeLancer, 5000); //This will call 'addFreeLancer' every 5 seconds and return an ID that will be used to stop the interval later.
+const addFreeLancerIntervalId = setInterval(addFreeLancer, 3000); //This will call 'addFreeLancer' every 5 seconds and return an ID that will be used to stop the interval later.
 
 function render() {
     const lancers = document.querySelector("#lancers");
@@ -53,9 +40,18 @@ function render() {
         const element = document.createElement("li");
         const textNode = document.createTextNode(`${freelancer.name} is a ${freelancer.occupation} - their rate is ${freelancer.price}`);
         element.appendChild(textNode);
-       // element.classList.add(freelancer.name, freelancer.occupation, freelancer.price);
+        element.classList.add(freelancer.name, freelancer.occupation, freelancer.price);
         return element;
     });
+
+    const allFreeLancers = [...freeLancers, ...newFreeLancer];
+    const totalPrices = allFreeLancers.reduce((sum, freelancer) => 
+        sum + freelancer.price, 0);
+    const averagePrice = totalPrices / allFreeLancers.length;
+
+    const averageElement = document.querySelector("#averagePrice");
+    averageElement.textContent = `Average Price: $${averagePrice.toFixed(2)}`;
+
     console.log(freeLancerElements);
     lancers.replaceChildren(...freeLancerElements);
 
@@ -67,6 +63,7 @@ function render() {
        // element.classList.add(freelancer.name, freelancer.occupation, freelancer.price);
         return element;
     });
+
     console.log(newFreeLancerElements);
     newFreeLancerList.replaceChildren(...newFreeLancerElements);
 }
@@ -76,10 +73,19 @@ function addFreeLancer() {
     const occupation = occupations[Math.floor(Math.random() * occupations.length)];
     const price = prices[Math.floor(Math.random() * prices.length)];
 
-    newFreeLancer.push({ name, occupation, price});
+    newFreeLancer.push({ name, occupation, price });
     render();
+
+    const allFreeLancers = [...freeLancers, ...newFreeLancer];
+    const totalPrices = allFreeLancers.reduce((sum, freelancer) => 
+        sum + freelancer.price, 0);
+    const averagePrice = totalPrices / allFreeLancers.length;
+
+    const averageElement = document.querySelector("#averagePrice");
+    averageElement.textContent = `Average Price: $${averagePrice.toFixed(2)}`;
 
     if (newFreeLancer.length >= maxFreeLancers) {
         clearInterval(addFreeLancerIntervalId);
     }
+
 }})
